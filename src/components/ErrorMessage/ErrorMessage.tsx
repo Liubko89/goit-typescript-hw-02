@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 
-const ErrorMessage = () => {
+const ErrorMessage: React.FC = () => {
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />

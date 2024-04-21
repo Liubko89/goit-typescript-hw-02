@@ -1,25 +1,25 @@
 import { useState } from "react";
-import { getPhotos } from "./apiService/images";
-import SearchBar from "./components/SearchBar/SearchBar";
+import { Photo, getPhotos } from "../../apiService/images";
+import SearchBar from "../SearchBar/SearchBar";
 import { useEffect } from "react";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import Loader from "./components/Loader/Loader";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import toast from "react-hot-toast";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
 import "./App.css";
 
-const App = () => {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [modalUrl, setModalUrl] = useState("");
-  const [modalAlt, setModalAlt] = useState("");
+const App: React.FC = () => {
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [images, setImages] = useState<Photo[] | []>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalUrl, setModalUrl] = useState<string>("");
+  const [modalAlt, setModalAlt] = useState<string>("");
 
   useEffect(() => {
     if (!query) return;
@@ -59,7 +59,7 @@ const App = () => {
     fatchData();
   }, [page, query]);
 
-  const handleSubmit = (value) => {
+  const handleSubmit = (value: string): void => {
     if (query === value) {
       toast(`You have already got the result by request '${value}'`, {
         style: {
@@ -81,17 +81,17 @@ const App = () => {
     setIsVisible(false);
   };
 
-  const loadMore = () => {
+  const loadMore = (): void => {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const handleOpenModal = (url, alt) => {
+  const handleOpenModal = (url: string, alt: string): void => {
     setShowModal(true);
     setModalUrl(url);
     setModalAlt(alt);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setShowModal(false);
     setModalUrl("");
     setModalAlt("");

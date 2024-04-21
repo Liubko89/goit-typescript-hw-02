@@ -1,6 +1,12 @@
 import css from "./ImageCard.module.css";
+import { ImageCardProps } from "./ImageCard.types";
 
-const ImageCard = ({ imageUrl, imageUrlFull, title, onModalOpen }) => {
+const ImageCard: React.FC<ImageCardProps> = ({
+  imageUrl,
+  imageUrlFull,
+  title,
+  onModalOpen,
+}: ImageCardProps) => {
   return (
     <div
       className={css.imgContainer}
